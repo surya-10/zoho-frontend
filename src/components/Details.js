@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import Home from './Home';
+import { useNavigate } from 'react-router-dom';
 
 function Details() {
     let [age, setAge] = useState(0);
@@ -7,6 +9,7 @@ function Details() {
     let [mobile, setMobile] = useState("");
     let [show, setShow] = useState(false);
     let [btn, setBtn] = useState("Update")
+    let navigate = useNavigate();
 
     function handleAgeChange(e) {
         setAge(e.target.value);
@@ -51,6 +54,7 @@ function Details() {
             console.log(response)
             if(response.resp){
                 alert("Your details updated");
+                navigate("/home")
             }
             
             
@@ -62,6 +66,7 @@ function Details() {
         }
     }
     return (
+        <Home>
         <div className='signup-div d-flex justify-content-center align-items-center min-vh-100'>
             <div className=''>
                 <form onSubmit={handleSubmit}>
@@ -106,6 +111,7 @@ function Details() {
                 </form>
             </div>
         </div>
+        </Home>
     )
 }
 

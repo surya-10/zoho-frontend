@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Details from './Details';
 
-function Home() {
+function Home({children}) {
     let navigate = useNavigate();
     let token = localStorage.getItem("token");
     let userId = localStorage.getItem("userId");
@@ -36,12 +36,18 @@ function Home() {
   return (
     <div className='home-div'>
         <div className='main'>
-            <p>Home</p>
+            <div>
+            <Link to="/home" className='text-white text-decoration-underline me-2 rounded'>Home</Link>
+            <Link to="/update" className='text-white text-decoration-underline'>edit</Link>
+            </div>
             <div>
             <button onClick={clearStorage} className='btn bg-danger text-white'>Logout</button>
             </div>
         </div>
-        <Details/>
+        <div>
+            {children}
+        </div>
+
     </div>
   )
 }
